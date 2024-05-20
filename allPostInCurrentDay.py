@@ -22,7 +22,6 @@ ws = wb.active
 gossiping = ["Title", "Author", "Push", "Date"]
 ws.append(gossiping)
 
-url = f"https://www.ptt.cc/bbs/Gossiping/index{nextLink2}.html"
 while True:
     url = f"https://www.ptt.cc/bbs/Gossiping/index{nextLink2}.html"
     res3 = requests.get(url, headers=headers)
