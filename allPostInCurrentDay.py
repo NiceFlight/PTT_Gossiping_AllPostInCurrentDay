@@ -30,27 +30,21 @@ while True:
     date1 = soup3.find("div", class_="date").text.strip()[-2:]
     todayDate = str(datetime.date.today()).split("-")[-1]
     if date1 == todayDate:
-        # print(url)
         articles = soup3.find_all('div', attrs={"class": "r-ent"})
         for a in articles:
             article = []
             title = a.find("div", class_="title").text.strip()
-            # print(title)
             article.append(title)
             author = a.find("div", class_="author").text.strip()
-            # print(author)
             article.append(author)
             push = a.find("div", class_="nrec").text.strip()
-            # print(push)
             article.append(push)
             date = a.find("div", attrs={"class": "date"}).text.strip()
-            # print(date)
             article.append(date)
             ws.append(article)
     else:
         wb.save("Gossiping.xlsx")
         print("end")
         break
-    # print(url)
     time.sleep(1)
     nextLink2 = int(nextLink2) - 1
