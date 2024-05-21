@@ -19,7 +19,7 @@ nextLink2 = soup2.find("a", string="下頁 ›").get("href").split(".")[0].repla
 
 wb = Workbook()
 ws = wb.active
-gossiping = ["Title", "Author", "Push", "Date"]
+gossiping = ["Title", "Author", "Push", "Date", "Post_Url"]
 ws.append(gossiping)
 
 while True:
@@ -39,6 +39,11 @@ while True:
             push = a.find("div", class_="nrec").text.strip()
             article.append(push)
             date = a.find("div", attrs={"class": "date"}).text.strip()
+            postUrl = a.find("a")
+            if postUrl is None:
+                article.append("-")
+            else:
+                article.append(f"https://www.ptt.cc{postUrl["href"]}")
             article.append(date)
             ws.append(article)
     else:
