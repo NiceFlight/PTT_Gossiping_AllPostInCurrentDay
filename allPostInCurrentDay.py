@@ -39,12 +39,12 @@ while True:
             push = a.find("div", class_="nrec").text.strip()
             article.append(push)
             date = a.find("div", attrs={"class": "date"}).text.strip()
+            article.append(date)
             postUrl = a.find("a")
             if postUrl is None:
                 article.append("-")
             else:
                 article.append(f"https://www.ptt.cc{postUrl["href"]}")
-            article.append(date)
             ws.append(article)
     else:
         wb.save("Gossiping.xlsx")
